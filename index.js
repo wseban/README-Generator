@@ -1,13 +1,30 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
+// const 
 
-const generatedMardown = `
-# ${name}
+const generatedMarkdown = (answers) => `
+# ${answers.title}
+(Place badge here)
+## Description
+${answers.description}
+## Table of Contents
+[Installation](https://github.com/${answers.github}/${answers.title}#installation)
+[Usage](https://github.com/${answers.github}/${answers.title}#Usage)
+[Contributors](https://github.com/${answers.github}/${answers.title}#Contributors)
+[License](https://github.com/${answers.github}/${answers.title}#License)
+[Questions](https://github.com/${answers.github}/${answers.title}#Questions)
 
-## Title
-
-## Product`
+## Installation
+${answers.installation}
+## Usage
+${answers.usage}
+## Contributors
+${answers.contributors}
+## License
+${answers.license}
+## Questions
+${answers.github}, ${answers.email}`
 // TODO: Create an array of questions for user input
 const questions = [];
 
@@ -32,7 +49,7 @@ function runInquirer() {
         {
             type: 'input',
             message: 'How does your project work?',
-            name: 'Usage',
+            name: 'usage',
         },
         {
             type: 'input',
@@ -43,20 +60,38 @@ function runInquirer() {
             type: 'list',
             message: 'What is the license used for this project?',
             name: 'license',
-            choices: ['', '', '', '']
+            choices: ['MIT', 'Mozilla', 'Apache', 'IBM']
+        },
+        {
+            type: 'input',
+            message: 'What is your GitHub user name?',
+            name: 'github',
+        },
+        {
+            type: 'input',
+            message: 'What is your email address?',
+            name: 'email',
         },
       ])
+      .then((answers) => {
+        const README = generatedMarkdown(answers);
+        console.log(answers);
+        writeToFile(README);
+      })
 }
-const fs = require('fs')
+
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-    fs.writeFile('README.md', data, (err) => {
+function writeToFile(README) {
+    fs.writeFile('./product/README.md', README, (err) => {
         err ? console.error(err) : console.log('Success!')
     })
 }
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+    runInquirer()
+    
+}
 
 // Function call to initialize app
 init();
