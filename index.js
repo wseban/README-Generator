@@ -1,30 +1,34 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-// const 
+const genMarkdown = require('./utils/generateMarkdown');
+let badge;
+
 
 const generatedMarkdown = (answers) => `
 # ${answers.title}
-(Place badge here)
-## Description
-${answers.description}
+${badge.badge}
 ## Table of Contents
-[Installation](https://github.com/${answers.github}/${answers.title}#installation)
-[Usage](https://github.com/${answers.github}/${answers.title}#Usage)
-[Contributors](https://github.com/${answers.github}/${answers.title}#Contributors)
-[License](https://github.com/${answers.github}/${answers.title}#License)
-[Questions](https://github.com/${answers.github}/${answers.title}#Questions)
+- [Description](#Description)
+- [Installation](#installation)
+- [Usage](#Usage)
+- [Contributors](#Contributors)
+- [License](#License)
+- [Questions](#Questions)
 
-## Installation
+## <a id=Description>Description</a>
+${answers.description}
+## <a id=Installation>Installation</a>
 ${answers.installation}
-## Usage
+## <a id=Usage>Usage</a>
 ${answers.usage}
-## Contributors
-${answers.contributors}
-## License
-${answers.license}
-## Questions
-${answers.github}, ${answers.email}`
+## <a id=Contributions>Contributions</a>
+${answers.contributions}
+## <a id=License>License</a>
+${answers.license}<br>
+${badge.link}
+## <a id=Questions>Questions</a>
+https://github.com/${answers.github}<br>${answers.email}`
 // TODO: Create an array of questions for user input
 const questions = [];
 
@@ -53,14 +57,14 @@ function runInquirer() {
         },
         {
             type: 'input',
-            message: 'Who else worked on this project?',
-            name: 'contributors',
+            message: 'What are the contribution guidelines?',
+            name: 'contributions',
         },
         {
             type: 'list',
             message: 'What is the license used for this project?',
             name: 'license',
-            choices: ['MIT', 'Mozilla', 'Apache', 'IBM']
+            choices: ['MIT', 'Mozilla', 'Apache', 'IBM', 'N/A']
         },
         {
             type: 'input',
@@ -74,8 +78,10 @@ function runInquirer() {
         },
       ])
       .then((answers) => {
+        badge = genMarkdown(answers.license);
         const README = generatedMarkdown(answers);
         console.log(answers);
+        console.log(badge);
         writeToFile(README);
       })
 }
