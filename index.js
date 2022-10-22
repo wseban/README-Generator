@@ -8,6 +8,7 @@ let badge;
 const generatedMarkdown = (answers) => `
 # ${answers.title}
 ${badge.badge}
+
 ## Table of Contents
 - [Description](#Description)
 - [Installation](#installation)
@@ -18,15 +19,20 @@ ${badge.badge}
 
 ## <a id=Description>Description</a>
 ${answers.description}
+
 ## <a id=Installation>Installation</a>
 ${answers.installation}
+
 ## <a id=Usage>Usage</a>
 ${answers.usage}
+
 ## <a id=Contributions>Contributions</a>
 ${answers.contributions}
+
 ## <a id=License>License</a>
 ${answers.license}<br>
 ${badge.link}
+
 ## <a id=Questions>Questions</a>
 https://github.com/${answers.github}<br>${answers.email}`
 // TODO: Create an array of questions for user input

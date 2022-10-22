@@ -1,6 +1,7 @@
 
-# README Generator
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+# Code Quiz
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 ## Table of Contents
 - [Description](#Description)
 - [Installation](#installation)
@@ -10,15 +11,20 @@
 - [Questions](#Questions)
 
 ## <a id=Description>Description</a>
-Generates README using node
+The purpose of this project was to utilize our skills with HTML, CSS and, primarily, JavaScript to create a code quiz.  This code quiz was to be as dynamic as possible using the allocated tools and languages.  Upon the start of the quiz, the desired outcome was for the questions to be presented, one by one, if the user got a question correct, the score was to be incremented and tracked throughout the remaining questions, but if they got a question wrong, the time alloted was decreased and presented in the timer.
+
 ## <a id=Installation>Installation</a>
-npm i then run node
+
+
 ## <a id=Usage>Usage</a>
-node index.js 
+Upon coming to the site the user is presented with a start button and a place where their timer(upper left) and high scores(upper right) will be displayed...
+
 ## <a id=Contributions>Contributions</a>
-fork and then create pull request
+
+
 ## <a id=License>License</a>
-Apache<br>
-https://opensource.org/licenses/Apache-2.0
+MIT<br>
+https://opensource.org/licenses/MIT
+
 ## <a id=Questions>Questions</a>
 https://github.com/wseban<br>fitnesswill13@gmail.com
